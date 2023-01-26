@@ -24,7 +24,7 @@ class Game:
         self.should_close = False
 
     def start(self):
-        Window.display = p.display.set_mode(Settings.get("RESOLUTION"), p.RESIZABLE)
+        Window.display = p.display.set_mode(Settings.get("RESOLUTION"))
         p.display.set_caption(Settings.get("TITLE"))
         p.display.set_icon(Assets.get_image("assets/tiles/1.png"))
         Window.resize(Settings.get("WINDOW SIZE"))
@@ -43,16 +43,16 @@ class Game:
             if ev.type == p.QUIT or Window.should_close:
                 self.quit()
 
-            if ev.type == p.VIDEORESIZE:
-                Window.resize((ev.w, ev.h))
+            # if ev.type == p.VIDEORESIZE:
+                # Window.resize((ev.w, ev.h))
 
-        if Input.get_key_down(p.K_F11):
-            Window.full_screen = not Window.full_screen
-            if Window.full_screen:
-                Window.display = p.display.set_mode(Window.monitor_size(), p.FULLSCREEN)
-                Window.resize(Window.monitor_size())
-            else:
-                Window.display = p.display.set_mode(Settings.get("WINDOW SIZE"), p.RESIZABLE)
+        # if Input.get_key_down(p.K_F11):
+            # Window.full_screen = not Window.full_screen
+            # if Window.full_screen:
+                # Window.display = p.display.set_mode(Window.monitor_size(), p.FULLSCREEN)
+                # Window.resize(Window.monitor_size())
+            # else:
+                # Window.display = p.display.set_mode(Settings.get("WINDOW SIZE"), p.RESIZABLE)
 
     @staticmethod
     def calculate_dt():

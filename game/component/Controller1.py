@@ -15,17 +15,17 @@ class Controller1(Component):
         self.grounded = False
         self.ground = "TERRAIN"
 
-    def early_update(self):
+    def late_update(self):
         self.grounded = False
-        rect = self.owner.get_component(Collider).get_rect()
+        rect = self.owner.get_component(Collider).get_rect().midbottom
         for obj in Collision.objects[self.ground].values():
             other_rect = obj.get_component(Collider).get_rect()
-            print(other_rect.top - rect.bottom < 3)
-            if other_rect.top - rect.bottom < 3 and rect.centerx - other_rect.centerx < 16:
+            if other_rect.collidepoint(rect):
                 self.grounded = True
                 break
 
     def update(self):
+
         vector = Vector2()
 
         if self.grounded:
@@ -34,8 +34,16 @@ class Controller1(Component):
         else:
             vector.y = self.owner.get_component(RigidBody).get_velocity().y
 
+        if Input.get_key_down(p.K_w):
+            vector.y = 500
+
         vector.x = (Input.get_key(p.K_a) - Input.get_key(p.K_d)) * 200
-        print(vector.y)
+
+        if vector.x > 0:
+            self.owner.sprite.flip_sprite(True)
+
+        elif vector.x < 0:
+            self.owner.sprite.flip_sprite(False)
 
         self.owner.get_component(RigidBody).set_velocity(vector)
 

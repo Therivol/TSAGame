@@ -2,6 +2,7 @@ import pygame as p
 from gui.element.UIElement import UIElement
 from util.Input import Input
 from util.Assets import Assets
+from util.Sound import Sounds
 
 
 class Button(UIElement):
@@ -18,6 +19,7 @@ class Button(UIElement):
         if self.rect.collidepoint(Input.get_mouse_pos()):
             self.current_surf = self.active
             if Input.get_button_down(0):
+                Sounds.sound_ex("assets/sounds/basic.wav")
                 self.pressed = True
         else:
             self.current_surf = self.idle

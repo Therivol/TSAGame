@@ -6,8 +6,9 @@ from util.Assets import Assets
 from util.Input import Input
 from util.Scenes import Scenes
 from game.system.Collisions import Collision
-
 from game.object.Player import Player
+
+from game.component.Animator import Animation
 
 
 class Level(Scene):
@@ -21,6 +22,9 @@ class Level(Scene):
 
     def set_level(self, level):
         TileMap.set_level(level)
+
+    def early_update(self):
+        self.player.early_update()
 
     def update(self):
         self.player.update()

@@ -2,6 +2,8 @@ from dataclasses import dataclass
 
 import pygame as p
 from pygame.math import Vector2
+
+from game.component.RigidBody import RigidBody
 from game.component.Transform import Transform
 from game.component.Component import Component
 from util.Debug import Debug
@@ -60,18 +62,23 @@ class Collider(Component):
         y_diff = rect_1.centery - rect_2.centery
 
         if abs(x_diff) > abs(y_diff):
-            # colliding from right
             if x_diff > 0:
+                print("left")
+                self.owner.get_component(RigidBody).velocity.x = 0
                 resolve = rect_2.right - rect_1.left
             elif x_diff < 0:
+                print("right")
                 resolve = -(rect_1.right - rect_2.left)
 
             transform.add_position_pos((resolve, 0))
 
         else:
             if y_diff > 0:
+                print("top")
+                self.owner.get_component(RigidBody).velocity.y = 0
                 resolve = rect_2.bottom - rect_1.top
             elif y_diff < 0:
+                print("bottom")
                 resolve = -(rect_1.bottom - rect_2.top)
 
             transform.add_position_pos((0, resolve))

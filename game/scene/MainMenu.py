@@ -3,6 +3,7 @@ from util.Input import Input
 from util.Window import Window
 from util.Scenes import Scenes
 from util.Assets import Assets
+from util.Sound import Sounds
 from game.scene.Scene import Scene
 from game.scene.Level import Level
 from game.scene.LevelSelect import LevelSelect
@@ -26,6 +27,8 @@ class MainMenu(Scene):
         self.shadow = p.Surface((232, 224))
         self.shadow.fill((0, 0, 0))
         self.shadow.set_alpha(120)
+
+        # Sounds.sound_ex("assets/sounds/main_menu.mp3")
 
     def update(self):
         if self.play_button.update():
