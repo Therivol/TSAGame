@@ -59,13 +59,13 @@ class Game:
         Time.calculate_dt()
 
     def early_update(self):
-        pass
+        Scenes.early_update()
 
     def update(self):
-        Scenes.update_current()
+        Scenes.update()
 
     def late_update(self):
-        pass
+        Scenes.late_update()
 
     def draw(self):
         Window.draw()

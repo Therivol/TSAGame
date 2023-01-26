@@ -4,6 +4,7 @@ from game.object.Object import Object
 from game.component.Collider import Collider
 from game.component.Sprite import Sprite
 from game.component.RigidBody import RigidBody
+from game.component.Controller1 import Controller1
 
 
 class Player(Object):
@@ -19,8 +20,11 @@ class Player(Object):
 
         self.rigid_body = RigidBody(self)
 
+        self.controller = Controller1(self)
+
         self.transform.set_position((100, 50))
 
         self.add_component(self.sprite)
         self.add_component(self.collider)
         self.add_component(self.rigid_body)
+        self.add_component(self.controller)

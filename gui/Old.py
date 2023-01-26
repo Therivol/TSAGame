@@ -58,7 +58,7 @@ class Window:
         pass
 
     def update(self):
-        Scenes.update_current()
+        Scenes.update()
 
     def late_update(self):
         pass

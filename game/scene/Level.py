@@ -30,6 +30,9 @@ class Level(Scene):
         if Input.get_key_down(p.K_ESCAPE):
             Scenes.set_scene("PAUSE")
 
+    def late_update(self):
+        self.player.late_update()
+
     def get_surface(self):
         surf = p.Surface((Settings.get("RESOLUTION")))
         surf.blit(Assets.get_image("assets/backgrounds/level.png"), (0, 0))

@@ -27,9 +27,19 @@ class Scenes:
         return Scenes.scenes[name.upper()]
 
     @staticmethod
-    def update_current():
+    def early_update():
+        if Scenes.current_scene:
+            Scenes.current_scene.early_update()
+
+    @staticmethod
+    def update():
         if Scenes.current_scene:
             Scenes.current_scene.update()
+
+    @staticmethod
+    def late_update():
+        if Scenes.current_scene:
+            Scenes.current_scene.late_update()
 
     @staticmethod
     def get_surface(scene=None):

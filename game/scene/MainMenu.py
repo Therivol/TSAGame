@@ -32,7 +32,7 @@ class MainMenu(Scene):
             Scenes.set_scene("LEVEL SELECT")
 
         if self.quit_button.update():
-            Window.quit()
+            Window.should_close = True
 
     def get_surface(self):
         surf = p.Surface((Settings.get("RESOLUTION")))
