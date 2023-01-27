@@ -69,6 +69,10 @@ class Collider(Component):
 
         if smallest_overlap != float("inf"):
 
+            if smallest_overlap_direction == (0, 1):
+                rigid = self.owner.get_component(RigidBody)
+                rigid.set_velocity_y(0)
+
             transform.add_position_pos((smallest_overlap * smallest_overlap_direction[0],
                                         smallest_overlap * smallest_overlap_direction[1]))
 

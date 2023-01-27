@@ -8,13 +8,23 @@ from game.system.Collisions import Collision
 from game.component.RigidBody import RigidBody
 
 
-class Controller1(Component):
+class Controller(Component):
     def __init__(self, owner):
         super().__init__(owner)
 
         self.grounded = False
         self.can_jump = False
         self.ground = "TERRAIN"
+        self.player = 1
+        self.key_binds = []
+        self.set_player(1)
+
+    def set_player(self, player):
+        self.player = player
+        if player == 1:
+            self.key_binds = [p.K_w, p.K_a, p.K_s, p.K_d]
+        else:
+            self.key_binds = [p.K_UP, p.K_LEFT, p.K_DOWN, p.K_RIGHT]
 
     def early_update(self):
         self.can_jump = False
@@ -35,12 +45,11 @@ class Controller1(Component):
         vector = Vector2()
 
         if self.can_jump and Input.get_key(p.K_w):
-            print("jump!")
             vector.y = 500
         elif self.grounded:
             vector.y = 0
         else:
-            vector.y = self.owner.get_component(RigidBody).get_velocity().y
+            vector.y = self.owner.get_component(RigidBody).get_velocity_y()
 
         vector.x = (Input.get_key(p.K_a) - Input.get_key(p.K_d)) * 200
 

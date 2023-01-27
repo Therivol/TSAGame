@@ -4,7 +4,7 @@ from game.object.Object import Object
 from game.component.Collider import Collider
 from game.component.Sprite import Sprite
 from game.component.RigidBody import RigidBody
-from game.component.Controller1 import Controller1
+from game.component.Controller import Controller
 from game.component.Animator import Animator, Animation
 
 
@@ -21,7 +21,7 @@ class Player(Object):
 
         self.rigid_body = RigidBody(self)
 
-        self.controller = Controller1(self)
+        self.controller = Controller(self)
 
         self.animator = Animator(self)
         self.animator.add_animation("IDLE RIGHT", "assets/animations/player1/idle")

@@ -18,8 +18,20 @@ class RigidBody(Component):
     def set_velocity(self, vel):
         self.velocity.update(vel)
 
+    def set_velocity_x(self, x):
+        self.velocity.x = x
+
+    def set_velocity_y(self, y):
+        self.velocity.y = y
+
     def get_velocity(self):
         return self.velocity
+
+    def get_velocity_x(self):
+        return self.velocity.x
+
+    def get_velocity_y(self):
+        return self.velocity.y
 
     def set_gravity(self, gravity):
         self.gravity = gravity
