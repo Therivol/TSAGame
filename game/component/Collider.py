@@ -67,8 +67,6 @@ class Collider(Component):
                 smallest_overlap = overlap
                 smallest_overlap_direction = direction
 
-        if smallest_overlap_direction == (1, 0):
-            return
         if smallest_overlap != float("inf"):
 
             transform.add_position_pos((smallest_overlap * smallest_overlap_direction[0],

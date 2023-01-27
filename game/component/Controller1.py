@@ -19,14 +19,14 @@ class Controller1(Component):
     def early_update(self):
         self.can_jump = False
         self.grounded = False
+
         rect = self.owner.get_component(Collider).get_rect()
-        new_rect = p.Rect(rect.bottomleft, (rect.width, 1))
+        under_rect = p.Rect(rect.bottomleft, (rect.width, 1))
         for obj in Collision.objects[self.ground].values():
             other_rect = obj.get_component(Collider).get_rect()
-            if other_rect.colliderect(new_rect):
+            if other_rect.colliderect(under_rect):
                 self.grounded = True
                 self.can_jump = True
-                break
 
         self.owner.get_component(RigidBody).set_gravity(not self.grounded)
 
@@ -37,6 +37,8 @@ class Controller1(Component):
         if self.can_jump and Input.get_key(p.K_w):
             print("jump!")
             vector.y = 500
+        elif self.grounded:
+            vector.y = 0
         else:
             vector.y = self.owner.get_component(RigidBody).get_velocity().y
 
