@@ -17,10 +17,11 @@ class Controller1(Component):
 
     def late_update(self):
         self.grounded = False
-        rect = self.owner.get_component(Collider).get_rect().midbottom
+        rect = self.owner.get_component(Collider).get_rect()
+        new_rect = p.Rect(rect.bottomleft, (rect.width, 1))
         for obj in Collision.objects[self.ground].values():
             other_rect = obj.get_component(Collider).get_rect()
-            if other_rect.collidepoint(rect):
+            if other_rect.colliderect(new_rect):
                 self.grounded = True
                 break
 

@@ -41,7 +41,7 @@ class Game:
 
         for ev in p.event.get():
             if ev.type == p.QUIT or Window.should_close:
-                self.quit()
+                self.should_close = True
 
             # if ev.type == p.VIDEORESIZE:
                 # Window.resize((ev.w, ev.h))

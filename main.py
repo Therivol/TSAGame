@@ -1,7 +1,10 @@
+import asyncio
+
 from game.Game import Game
+import pygbag
 
 
-if __name__ == "__main__":
+async def main():
 
     game = Game()
     game.start()
@@ -13,3 +16,9 @@ if __name__ == "__main__":
         game.update()
         game.late_update()
         game.draw()
+
+        await asyncio.sleep(0)
+
+    game.quit()
+
+asyncio.run(main())

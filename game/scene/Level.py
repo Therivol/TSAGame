@@ -7,6 +7,7 @@ from util.Input import Input
 from util.Scenes import Scenes
 from game.system.Collisions import Collision
 from game.object.Player import Player
+from game.system.ObjectCollection import ObjectCollection
 
 from game.component.Animator import Animation
 
@@ -18,24 +19,24 @@ class Level(Scene):
 
     def awake(self):
         self.player = Player()
+        ObjectCollection.add(self.player)
         Collision.add(self.player)
 
     def set_level(self, level):
         TileMap.set_level(level)
 
     def early_update(self):
-        self.player.early_update()
+        ObjectCollection.early_update()
 
     def update(self):
-        self.player.update()
-
+        ObjectCollection.update()
         Collision.update()
 
         if Input.get_key_down(p.K_ESCAPE):
             Scenes.set_scene("PAUSE")
 
     def late_update(self):
-        self.player.late_update()
+        ObjectCollection.late_update()
 
     def get_surface(self):
         surf = p.Surface((Settings.get("RESOLUTION")))
