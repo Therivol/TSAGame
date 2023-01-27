@@ -13,9 +13,11 @@ class Controller1(Component):
         super().__init__(owner)
 
         self.grounded = False
+        self.can_jump = False
         self.ground = "TERRAIN"
 
-    def late_update(self):
+    def early_update(self):
+        self.can_jump = False
         self.grounded = False
         rect = self.owner.get_component(Collider).get_rect()
         new_rect = p.Rect(rect.bottomleft, (rect.width, 1))
@@ -23,20 +25,20 @@ class Controller1(Component):
             other_rect = obj.get_component(Collider).get_rect()
             if other_rect.colliderect(new_rect):
                 self.grounded = True
+                self.can_jump = True
                 break
+
+        self.owner.get_component(RigidBody).set_gravity(not self.grounded)
 
     def update(self):
 
         vector = Vector2()
 
-        if self.grounded:
-            vector.y = -2
-
+        if self.can_jump and Input.get_key(p.K_w):
+            print("jump!")
+            vector.y = 500
         else:
             vector.y = self.owner.get_component(RigidBody).get_velocity().y
-
-        if Input.get_key_down(p.K_w):
-            vector.y = 500
 
         vector.x = (Input.get_key(p.K_a) - Input.get_key(p.K_d)) * 200
 

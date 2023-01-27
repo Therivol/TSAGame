@@ -57,31 +57,22 @@ class Collider(Component):
         rect_1 = self.get_rect()
         rect_2 = manifold.other.get_rect()
 
-        resolve = 0
-        x_diff = rect_1.centerx - rect_2.centerx
-        y_diff = rect_1.centery - rect_2.centery
+        overlaps = [(rect_2.right - rect_1.left, (1, 0)), (rect_1.right - rect_2.left, (-1, 0)),
+                    (rect_2.bottom - rect_1.top, (0, 1)), (rect_1.bottom - rect_2.top, (0, -1))]
 
-        if abs(x_diff) > abs(y_diff):
-            if x_diff > 0:
-                print("left")
-                self.owner.get_component(RigidBody).velocity.x = 0
-                resolve = rect_2.right - rect_1.left
-            elif x_diff < 0:
-                print("right")
-                resolve = -(rect_1.right - rect_2.left)
+        smallest_overlap = float("inf")
+        smallest_overlap_direction = (0, 0)
+        for overlap, direction in overlaps:
+            if 0 < overlap < smallest_overlap:
+                smallest_overlap = overlap
+                smallest_overlap_direction = direction
 
-            transform.add_position_pos((resolve, 0))
+        if smallest_overlap_direction == (1, 0):
+            return
+        if smallest_overlap != float("inf"):
 
-        else:
-            if y_diff > 0:
-                print("top")
-                self.owner.get_component(RigidBody).velocity.y = 0
-                resolve = rect_2.bottom - rect_1.top
-            elif y_diff < 0:
-                print("bottom")
-                resolve = -(rect_1.bottom - rect_2.top)
-
-            transform.add_position_pos((0, resolve))
+            transform.add_position_pos((smallest_overlap * smallest_overlap_direction[0],
+                                        smallest_overlap * smallest_overlap_direction[1]))
 
     def reset_manifold(self):
         self.manifold.colliding = False

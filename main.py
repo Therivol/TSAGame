@@ -10,12 +10,13 @@ async def main():
     game.start()
 
     while not game.should_close:
-        game.calculate_dt()
         game.poll_events()
+        game.start_frame()
         game.early_update()
         game.update()
         game.late_update()
         game.draw()
+        game.calculate_dt()
 
         await asyncio.sleep(0)
 

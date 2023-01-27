@@ -13,9 +13,12 @@ class Time:
         Time.last_time = time.time_ns()
 
     @staticmethod
+    def start_frame():
+        Time.last_time = time.time_ns()
+
+    @staticmethod
     def calculate_dt():
         Time.delta_time_ns = (time.time_ns() - Time.last_time)
-        Time.last_time = time.time_ns()
 
     @staticmethod
     def delta():

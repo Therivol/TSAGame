@@ -27,6 +27,12 @@ class Transform(Component):
     def set_y(self, y):
         self.position.y = y
 
+    def get_x(self):
+        return self.position.x
+
+    def get_y(self):
+        return self.position.y
+
     def add_x(self, x):
         self.position.x += x
 

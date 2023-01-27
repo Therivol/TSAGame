@@ -73,6 +73,7 @@ class Collision:
                 collider.set_layer("TERRAIN")
                 obj.add_component(collider)
                 obj.transform.set_position((x * tile_size, y * tile_size))
+                # obj.transform.set_static(True)
                 Collision.add(obj)
 
                 i += 1

@@ -37,6 +37,7 @@ class Game:
         Scenes.set_scene("MAIN MENU")
 
     def poll_events(self):
+
         Input.update()
 
         for ev in p.event.get():
@@ -53,6 +54,10 @@ class Game:
                 # Window.resize(Window.monitor_size())
             # else:
                 # Window.display = p.display.set_mode(Settings.get("WINDOW SIZE"), p.RESIZABLE)
+
+    @staticmethod
+    def start_frame():
+        Time.start_frame()
 
     @staticmethod
     def calculate_dt():

@@ -2,6 +2,7 @@ from game.component.Component import Component
 from util.Time import Time
 from pygame.math import Vector2
 from util.Physics import Physics
+import pygame as p
 
 
 class RigidBody(Component):
@@ -9,6 +10,7 @@ class RigidBody(Component):
         super().__init__(owner)
 
         self.velocity = Vector2()
+        self.gravity = True
 
     def velocity_change(self, vel):
         self.velocity += vel
@@ -19,8 +21,12 @@ class RigidBody(Component):
     def get_velocity(self):
         return self.velocity
 
+    def set_gravity(self, gravity):
+        self.gravity = gravity
+
     def apply_gravity(self):
-        self.velocity.y += Physics.gravity * Time.delta() * 100
+        if self.gravity:
+            self.velocity.y += Physics.gravity * Time.delta() * 100
 
     def update(self):
         self.apply_gravity()
