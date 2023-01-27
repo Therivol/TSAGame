@@ -5,7 +5,7 @@ from game.component.Collider import Collider
 from game.component.Sprite import Sprite
 from game.component.RigidBody import RigidBody
 from game.component.Controller import Controller
-from game.component.Animator import Animator, Animation
+from game.component.Animator import Animator
 
 
 class Player(Object):
