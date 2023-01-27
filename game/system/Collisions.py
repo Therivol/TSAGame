@@ -4,7 +4,7 @@ import pygame as p
 
 
 class Collision:
-    collision_layers = ["TERRAIN", "DEFAULT", "DEFAULT"]
+    collision_layers = ["DEFAULT", "TERRAIN", "ENTITY"]
     objects = {layer: {} for layer in collision_layers}
 
     @staticmethod
@@ -55,6 +55,8 @@ class Collision:
 
         for layer in collider.collide_layers:
             for obj_id, obj in Collision.objects[layer].items():
+                if obj.get_component(Collider) is collider:
+                    continue
                 if obj.get_component(Collider).get_rect().colliderect(collider.get_rect()):
                     overlapping_objects.append(obj)
 

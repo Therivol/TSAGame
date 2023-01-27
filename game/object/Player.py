@@ -16,6 +16,7 @@ class Player(Object):
         self.sprite.load_image("assets/sprites/player.png", alpha=True)
 
         self.collider = Collider(self)
+        self.collider.set_layer("ENTITY")
         self.collider.set_rect(p.Rect(0, 0, 32, 64), (15, 0))
         self.collider.add_collide_layer("TERRAIN")
 
@@ -26,8 +27,6 @@ class Player(Object):
         self.animator = Animator(self)
         self.animator.add_animation("IDLE RIGHT", "assets/animations/player1/idle")
         self.animator.play_animation("IDLE RIGHT")
-
-        self.transform.set_position((150, 100))
 
         self.add_component(self.sprite)
         self.add_component(self.collider)

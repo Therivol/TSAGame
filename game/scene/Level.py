@@ -8,6 +8,7 @@ from util.Scenes import Scenes
 from game.system.Collisions import Collision
 from game.object.Player import Player
 from game.system.ObjectCollection import ObjectCollection
+from game.component.Controller import Controller
 
 from game.component.Animator import Animation
 
@@ -15,12 +16,23 @@ from game.component.Animator import Animation
 class Level(Scene):
     def __init__(self):
         super().__init__("LEVEL")
-        self.player = None
+        self.player1 = None
+        self.player2 = None
 
     def awake(self):
-        self.player = Player()
-        ObjectCollection.add(self.player)
-        Collision.add(self.player)
+        self.player1 = Player()
+        self.player2 = Player()
+
+        self.player1.transform.set_position((100, 100))
+        self.player2.transform.set_position((400, 400))
+
+        ObjectCollection.add(self.player1)
+        ObjectCollection.add(self.player2)
+        Collision.add(self.player1)
+        Collision.add(self.player2)
+
+        self.player1.get_component(Controller).set_player(1)
+        self.player2.get_component(Controller).set_player(2)
 
     def set_level(self, level):
         TileMap.set_level(level)
@@ -42,7 +54,8 @@ class Level(Scene):
         surf = p.Surface((Settings.get("RESOLUTION")))
         surf.blit(Assets.get_image("assets/backgrounds/level.png"), (0, 0))
         TileMap.render(surf)
-        self.player.sprite.draw(surf)
+        self.player1.sprite.draw(surf)
+        self.player2.sprite.draw(surf)
 
         return surf
 

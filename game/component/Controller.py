@@ -15,15 +15,15 @@ class Controller(Component):
         self.grounded = False
         self.can_jump = False
         self.ground = "TERRAIN"
-        self.player = 1
+        self.player = 0
         self.key_binds = []
-        self.set_player(1)
+        self.set_player(2)
 
     def set_player(self, player):
         self.player = player
         if player == 1:
             self.key_binds = [p.K_w, p.K_a, p.K_s, p.K_d]
-        else:
+        elif player == 2:
             self.key_binds = [p.K_UP, p.K_LEFT, p.K_DOWN, p.K_RIGHT]
 
     def early_update(self):
@@ -44,14 +44,14 @@ class Controller(Component):
 
         vector = Vector2()
 
-        if self.can_jump and Input.get_key(p.K_w):
+        if self.can_jump and Input.get_key(self.key_binds[0]):
             vector.y = 500
         elif self.grounded:
             vector.y = 0
         else:
             vector.y = self.owner.get_component(RigidBody).get_velocity_y()
 
-        vector.x = (Input.get_key(p.K_a) - Input.get_key(p.K_d)) * 200
+        vector.x = (Input.get_key(self.key_binds[1]) - Input.get_key(self.key_binds[3])) * 200
 
         if vector.x > 0:
             self.owner.sprite.flip_sprite(True)
