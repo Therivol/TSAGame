@@ -62,5 +62,7 @@ class Animator(Component):
         self.animations[name] = Animation(path)
 
     def play_animation(self, name):
+        if self.playing == self.animations[name]:
+            return
         self.animations[name].start()
         self.playing = self.animations[name]

@@ -8,12 +8,12 @@ from game.component.Controller import Controller
 from game.component.Animator import Animator
 
 
-class Player(Object):
+class Player1(Object):
     def __init__(self):
-        super().__init__("Player")
+        super().__init__("Player1")
 
         self.sprite = Sprite(self)
-        self.sprite.load_image("assets/sprites/player.png", alpha=True)
+        self.sprite.load_image("assets/sprites/player1.png", alpha=True)
 
         self.collider = Collider(self)
         self.collider.set_layer("ENTITY")
@@ -23,10 +23,14 @@ class Player(Object):
         self.rigid_body = RigidBody(self)
 
         self.controller = Controller(self)
+        self.controller.set_player(1)
 
         self.animator = Animator(self)
-        self.animator.add_animation("IDLE RIGHT", "assets/animations/player1/idle")
-        self.animator.play_animation("IDLE RIGHT")
+        self.animator.add_animation("IDLE", "assets/animations/player1/idle")
+        self.animator.add_animation("FLOATING", "assets/animations/player1/float")
+        self.animator.add_animation("FALLING", "assets/animations/player1/falling")
+        self.animator.add_animation("RUNNING", "assets/animations/player1/running")
+        self.animator.play_animation("IDLE")
 
         self.add_component(self.sprite)
         self.add_component(self.collider)

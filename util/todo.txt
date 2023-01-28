@@ -1,6 +1,4 @@
-animations
 other character
-how to play page
 puzzle
 level loader
 documentation

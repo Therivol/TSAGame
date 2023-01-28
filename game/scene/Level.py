@@ -6,7 +6,8 @@ from util.Assets import Assets
 from util.Input import Input
 from util.Scenes import Scenes
 from game.system.Collisions import Collision
-from game.object.Player import Player
+from game.object.Player1 import Player1
+from game.object.Player2 import Player2
 from game.system.ObjectCollection import ObjectCollection
 from game.component.Controller import Controller
 
@@ -20,8 +21,8 @@ class Level(Scene):
         self.player2 = None
 
     def awake(self):
-        self.player1 = Player()
-        self.player2 = Player()
+        self.player1 = Player1()
+        self.player2 = Player2()
 
         self.player1.transform.set_position((100, 100))
         self.player2.transform.set_position((400, 400))
@@ -30,9 +31,6 @@ class Level(Scene):
         ObjectCollection.add(self.player2)
         Collision.add(self.player1)
         Collision.add(self.player2)
-
-        self.player1.get_component(Controller).set_player(1)
-        self.player2.get_component(Controller).set_player(2)
 
     def set_level(self, level):
         TileMap.set_level(level)

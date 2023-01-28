@@ -6,6 +6,7 @@ from util.Input import Input
 from game.component.Collider import Collider
 from game.system.Collisions import Collision
 from game.component.RigidBody import RigidBody
+from game.component.Animator import Animator
 
 
 class Controller(Component):
@@ -43,13 +44,25 @@ class Controller(Component):
     def update(self):
 
         vector = Vector2()
+        velocity = self.owner.get_component(RigidBody).get_velocity()
+
+        anim = "IDLE"
+
+        if velocity.y < 0:
+            anim = "FALLING"
+        elif velocity.y > 0:
+            anim = "FLOATING"
+        elif abs(velocity.x) > 0:
+            anim = "RUNNING"
+
+        self.owner.get_component(Animator).play_animation(anim)
 
         if self.can_jump and Input.get_key(self.key_binds[0]):
-            vector.y = 500
+            vector.y = 525
         elif self.grounded:
             vector.y = 0
         else:
-            vector.y = self.owner.get_component(RigidBody).get_velocity_y()
+            vector.y = velocity.y
 
         vector.x = (Input.get_key(self.key_binds[1]) - Input.get_key(self.key_binds[3])) * 200
 
