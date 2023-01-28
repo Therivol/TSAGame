@@ -58,10 +58,16 @@ class Controller(Component):
         self.owner.get_component(Animator).play_animation(anim)
 
         if self.can_jump and Input.get_key(self.key_binds[0]):
-            vector.y = 525
+            vector.y = 425
         elif self.grounded:
             vector.y = 0
         else:
+            if velocity.y < 0:
+                self.owner.get_component(RigidBody).apply_gravity(0.5)
+
+            elif velocity.y > 0 and not Input.get_key(self.key_binds[0]):
+                self.owner.get_component(RigidBody).apply_gravity(2)
+
             vector.y = velocity.y
 
         vector.x = (Input.get_key(self.key_binds[1]) - Input.get_key(self.key_binds[3])) * 200

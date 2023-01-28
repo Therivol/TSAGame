@@ -36,9 +36,9 @@ class RigidBody(Component):
     def set_gravity(self, gravity):
         self.gravity = gravity
 
-    def apply_gravity(self):
+    def apply_gravity(self, multiplier=1):
         if self.gravity:
-            self.velocity.y += Physics.gravity * Time.delta() * 100
+            self.velocity.y += Physics.gravity * multiplier * Time.delta() * 100
 
     def update(self):
         self.apply_gravity()

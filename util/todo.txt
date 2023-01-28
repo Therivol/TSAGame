@@ -1,5 +1,3 @@
-other character
 puzzle
-level loader
 documentation
 sound effects/music

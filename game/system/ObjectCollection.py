@@ -52,3 +52,8 @@ class ObjectCollection:
     @staticmethod
     def process_removals():
         ObjectCollection.objects = [obj for obj in ObjectCollection.objects if not obj.is_queued_for_removal]
+
+    @staticmethod
+    def clear():
+        ObjectCollection.objects.clear()
+        ObjectCollection.new_objects.clear()

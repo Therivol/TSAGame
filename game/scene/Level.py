@@ -8,6 +8,7 @@ from util.Scenes import Scenes
 from game.system.Collisions import Collision
 from game.object.Player1 import Player1
 from game.object.Player2 import Player2
+from game.object.PushingBox import PushingBox
 from game.system.ObjectCollection import ObjectCollection
 from game.component.Controller import Controller
 
@@ -21,19 +22,32 @@ class Level(Scene):
         self.player2 = None
 
     def awake(self):
+        pass
+
+    def set_level(self, level):
+        self.clear()
+
+        TileMap.set_level(level)
+
         self.player1 = Player1()
         self.player2 = Player2()
 
-        self.player1.transform.set_position((100, 100))
-        self.player2.transform.set_position((400, 400))
+        # self.test = PushingBox()
+
+        self.player1.transform.set_position((75, 350))
+        self.player2.transform.set_position((80, 350))
 
         ObjectCollection.add(self.player1)
         ObjectCollection.add(self.player2)
+        # ObjectCollection.add(self.test)
         Collision.add(self.player1)
         Collision.add(self.player2)
+        # Collision.add(self.test)
 
-    def set_level(self, level):
-        TileMap.set_level(level)
+    def clear(self):
+        TileMap.clear()
+        Collision.clear()
+        ObjectCollection.clear()
 
     def early_update(self):
         ObjectCollection.early_update()
@@ -54,6 +68,7 @@ class Level(Scene):
         TileMap.render(surf)
         self.player1.sprite.draw(surf)
         self.player2.sprite.draw(surf)
+        # self.test.sprite.draw(surf)
 
         return surf
 

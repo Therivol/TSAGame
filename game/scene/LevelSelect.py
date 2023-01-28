@@ -36,9 +36,11 @@ class LevelSelect(Scene):
 
         if self.button_2.update():
             Scenes.set_scene("LEVEL")
+            Scenes.get_scene("LEVEL").set_level('2')
 
         if self.button_3.update():
             Scenes.set_scene("LEVEL")
+            Scenes.get_scene("LEVEL").set_level('3')
 
     def get_surface(self):
         surf = p.Surface((Settings.get("RESOLUTION")))

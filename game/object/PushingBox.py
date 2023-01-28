@@ -13,10 +13,11 @@ class PushingBox(Object):
         super().__init__(self)
 
         self.sprite = Sprite(self)
-        self.sprite.set_surface(p.image.scale(Assets.get_image("assets/sprites/box.png"), (32, 32)))
+        self.sprite.set_surface(p.transform.scale(Assets.get_image("assets/sprites/box.png"), (32, 32)))
 
         self.collider = Collider(self)
         self.collider.set_layer("TERRAIN")
+        self.collider.add_collide_layer("TERRAIN")
         self.collider.set_rect(p.Rect(0, 0, 32, 32), (0, 0))
 
         self.rigid_body = RigidBody(self)
