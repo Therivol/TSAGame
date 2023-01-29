@@ -1,7 +1,6 @@
 import asyncio
 
 from game.Game import Game
-import pygbag
 
 
 async def main():
@@ -9,7 +8,7 @@ async def main():
     game = Game()
     game.start()
 
-    while not game.should_close:
+    while True:
         game.poll_events()
         game.start_frame()
         game.early_update()
@@ -20,6 +19,7 @@ async def main():
 
         await asyncio.sleep(0)
 
-    game.quit()
+        if game.should_close:
+            game.quit()
 
 asyncio.run(main())

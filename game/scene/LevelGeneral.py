@@ -9,10 +9,12 @@ from util.Audio import Audio
 from util.Collisions import Collision
 from game.object.Player1 import Player1
 from game.object.Player2 import Player2
-from game.object.Button1a import Button1a
+from game.object.Buttons import Button1a
 from util.ObjectCollection import ObjectCollection
 
 from game.levels.Level1 import Level1
+from game.levels.Level2 import Level2
+from game.levels.Level3 import Level3
 
 
 class Level(Scene):
@@ -25,16 +27,18 @@ class Level(Scene):
         pass
 
     def set_level(self, level):
+        self.clear()
+
         if level == '1':
             self.level = Level1()
 
         elif level == '2':
-            pass
+            self.level = Level2()
 
         elif level == '3':
-            pass
+            self.level = Level3()
 
-        self.clear()
+        self.level.awake()
 
         TileMap.set_level(level)
 
@@ -49,10 +53,10 @@ class Level(Scene):
     def update(self):
         ObjectCollection.update()
         Collision.update()
+        self.level.update()
 
         if Input.get_key_down(p.K_ESCAPE):
             Scenes.set_scene("PAUSE")
-
 
     def late_update(self):
         ObjectCollection.late_update()
@@ -61,9 +65,7 @@ class Level(Scene):
         surf = p.Surface((Settings.get("RESOLUTION")))
         surf.blit(Assets.get_image("assets/backgrounds/level.png"), (0, 0))
         TileMap.render(surf)
-        self.player1.sprite.draw(surf)
-        self.player2.sprite.draw(surf)
-        self.button.sprite.draw(surf)
+        self.level.draw(surf)
 
         return surf
 

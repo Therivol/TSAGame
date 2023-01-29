@@ -1,4 +1,5 @@
 from game.component.Collider import Collider
+from game.component.Collider import Manifold
 from game.object.Object import Object
 import pygame as p
 

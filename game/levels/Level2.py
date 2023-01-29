@@ -6,7 +6,7 @@ from game.object.Crown import Crown
 from util.Scenes import Scenes
 
 
-class Level1(Level):
+class Level2(Level):
     def __init__(self):
         super().__init__()
 

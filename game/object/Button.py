@@ -2,18 +2,12 @@ import pygame as p
 
 from game.object.Object import Object
 from game.component.Collider import Collider
-from game.component.Sprite import Sprite
 from game.component.ButtonScript import ButtonScript
-
-from util.Assets import Assets
 
 
 class Button(Object):
-    def __init__(self):
-        super().__init__(self)
-
-        self.sprite = Sprite(self)
-        self.sprite.set_surface(Assets.get_image("assets/objects/buttonup.png", alpha=True))
+    def __init__(self, name):
+        super().__init__(name)
 
         self.collider = Collider(self)
         self.collider.set_layer("TERRAIN")
@@ -24,7 +18,6 @@ class Button(Object):
 
         self.transform.set_static(True)
 
-        self.add_component(self.sprite)
         self.add_component(self.collider)
         self.add_component(self.script)
 

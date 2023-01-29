@@ -58,7 +58,7 @@ class Controller(Component):
         self.owner.get_component(Animator).play_animation(anim)
 
         if self.can_jump and Input.get_key(self.key_binds[0]):
-            vector.y = 425
+            vector.y = 420
         elif self.grounded:
             vector.y = 0
         else:

@@ -16,15 +16,16 @@ class ButtonScript(Component):
         self.pressed = self.owner.get_component(Collider).is_triggered()
 
         if self.pressed != self.last_pressed:
-            if self.pressed:
-                self.press()
-            else:
+            if not self.pressed:
                 self.reset()
 
+    def early_update(self):
+        if self.pressed != self.last_pressed:
+            if self.pressed:
+                self.press()
+
     def press(self):
-        self.owner.get_component(Sprite).load_image("assets/objects/buttondown.png", alpha=True)
         self.owner.press()
 
     def reset(self):
-        self.owner.get_component(Sprite).load_image("assets/objects/buttonup.png", alpha=True)
         self.owner.reset()
