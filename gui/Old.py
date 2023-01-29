@@ -9,7 +9,7 @@ from util.Assets import Assets
 
 from game.scene.MainMenu import MainMenu
 from game.scene.LevelSelect import LevelSelect
-from game.scene.Level import Level
+from game.scene.LevelGeneral import Level
 from game.scene.Pause import Pause
 
 

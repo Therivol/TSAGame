@@ -1,4 +1,4 @@
-from game.system.Collisions import Collision
+from util.Collisions import Collision
 from game.component.Collider import Collider
 
 

@@ -80,6 +80,10 @@ class Collider(Component):
         self.manifold.colliding = False
         self.manifold.other = None
 
+    def set_manifold(self, colliding, other):
+        self.manifold.colliding = colliding
+        self.manifold.other = other
+
     def set_rect(self, rect, offset):
         self.rect = rect
         self.offset.update(offset)
@@ -96,3 +100,6 @@ class Collider(Component):
 
     def update(self):
         self.set_position()
+
+    def is_triggered(self):
+        return self.manifold.colliding

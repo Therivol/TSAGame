@@ -24,3 +24,6 @@ class Scene:
 
     def exit(self):
         pass
+
+    def enter(self):
+        pass

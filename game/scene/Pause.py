@@ -3,7 +3,7 @@ from util.Input import Input
 from util.Scenes import Scenes
 from util.Assets import Assets
 from game.scene.Scene import Scene
-from game.scene.Level import Level
+from game.scene.LevelGeneral import Level
 from game.scene.LevelSelect import LevelSelect
 from gui.element.Button import Button
 import pygame as p

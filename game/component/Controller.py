@@ -4,7 +4,7 @@ from game.component.Component import Component
 from pygame.math import Vector2
 from util.Input import Input
 from game.component.Collider import Collider
-from game.system.Collisions import Collision
+from util.Collisions import Collision
 from game.component.RigidBody import RigidBody
 from game.component.Animator import Animator
 

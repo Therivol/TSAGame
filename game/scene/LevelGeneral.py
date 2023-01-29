@@ -5,44 +5,38 @@ from util.Settings import Settings
 from util.Assets import Assets
 from util.Input import Input
 from util.Scenes import Scenes
-from game.system.Collisions import Collision
+from util.Audio import Audio
+from util.Collisions import Collision
 from game.object.Player1 import Player1
 from game.object.Player2 import Player2
-from game.object.PushingBox import PushingBox
-from game.system.ObjectCollection import ObjectCollection
-from game.component.Controller import Controller
+from game.object.Button1a import Button1a
+from util.ObjectCollection import ObjectCollection
 
-from game.component.Animator import Animation
+from game.levels.Level1 import Level1
 
 
 class Level(Scene):
     def __init__(self):
         super().__init__("LEVEL")
-        self.player1 = None
-        self.player2 = None
+
+        self.level = None
 
     def awake(self):
         pass
 
     def set_level(self, level):
+        if level == '1':
+            self.level = Level1()
+
+        elif level == '2':
+            pass
+
+        elif level == '3':
+            pass
+
         self.clear()
 
         TileMap.set_level(level)
-
-        self.player1 = Player1()
-        self.player2 = Player2()
-
-        # self.test = PushingBox()
-
-        self.player1.transform.set_position((75, 350))
-        self.player2.transform.set_position((80, 350))
-
-        ObjectCollection.add(self.player1)
-        ObjectCollection.add(self.player2)
-        # ObjectCollection.add(self.test)
-        Collision.add(self.player1)
-        Collision.add(self.player2)
-        # Collision.add(self.test)
 
     def clear(self):
         TileMap.clear()
@@ -59,6 +53,7 @@ class Level(Scene):
         if Input.get_key_down(p.K_ESCAPE):
             Scenes.set_scene("PAUSE")
 
+
     def late_update(self):
         ObjectCollection.late_update()
 
@@ -68,10 +63,12 @@ class Level(Scene):
         TileMap.render(surf)
         self.player1.sprite.draw(surf)
         self.player2.sprite.draw(surf)
-        # self.test.sprite.draw(surf)
+        self.button.sprite.draw(surf)
 
         return surf
 
     def exit(self):
-        TileMap.clear()
+        pass
 
+    def enter(self):
+        pass

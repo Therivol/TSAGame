@@ -5,7 +5,7 @@ from util.Scenes import Scenes
 from util.Assets import Assets
 from util.Audio import Audio
 from game.scene.Scene import Scene
-from game.scene.Level import Level
+from game.scene.LevelGeneral import Level
 from game.scene.LevelSelect import LevelSelect
 from gui.element.Button import Button
 import pygame as p
@@ -50,3 +50,7 @@ class MainMenu(Scene):
         surf.blit(Assets.get_image("assets/ui/quit.png", alpha=True), (384, 300))
 
         return surf
+
+    def enter(self):
+        if not Audio.current_track == "assets/sounds/level.wav":
+            Audio.play_track("assets/sounds/level.wav")

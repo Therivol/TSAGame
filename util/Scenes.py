@@ -19,7 +19,10 @@ class Scenes:
 
     @staticmethod
     def set_scene(name):
+        if Scenes.current_scene:
+            Scenes.current_scene.exit()
         Scenes.current_scene = Scenes.scenes[name.upper()]
+        Scenes.current_scene.enter()
         Debug.log(f"{name.upper()}")
 
     @staticmethod
