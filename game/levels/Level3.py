@@ -1,7 +1,7 @@
 import pygame as p
 
 from game.levels.Level import Level
-from game.object.Buttons import Button1a, Button2a
+from game.object.Buttons import Button1a, Button1b
 from game.object.Crown import Crown
 from util.Scenes import Scenes
 
@@ -18,7 +18,7 @@ class Level3(Level):
         super().awake()
 
         self.button1a = Button1a()
-        self.button2a = Button2a()
+        self.button2a = Button1b()
         self.crown = Crown()
         self.crown.set_players(self.player1, self.player2)
 
