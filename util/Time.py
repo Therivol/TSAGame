@@ -3,7 +3,7 @@ import pygame
 import time
 
 
-class Time:
+class OldTime:
     time_started = 0
     delta_time_ns = 0
     last_time = 0
@@ -30,7 +30,7 @@ class Time:
         return (pygame.time.get_ticks() - Time.time_started) / 1000
 
 
-class OldTime:
+class Time:
     time_started = 0
     delta_time_ns = 0
     last_time = 0
@@ -50,7 +50,7 @@ class OldTime:
 
     @staticmethod
     def delta():
-        return Time.delta_time_ns / 1000000000
+        return Time.delta_time_ns / 1000000000 * 2
 
     @staticmethod
     def elapsed():
