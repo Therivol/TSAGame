@@ -4,6 +4,7 @@ from game.levels.Level import Level
 from game.object.Buttons import Button3a, Button3b, Switch3a, Switch3b
 from game.object.Crown import Crown
 from util.Scenes import Scenes
+from game.scene.EndScreen import EndScreen
 
 
 class Level3(Level):
@@ -42,8 +43,8 @@ class Level3(Level):
 
     def update(self):
         if self.crown.win:
-            Scenes.set_scene("LEVEL SELECT")
-            Scenes.get_scene("LEVEL SELECT").open_level(2)
+            Scenes.add_scene(EndScreen())
+            Scenes.set_scene("END SCREEN")
 
         if not self.player1.collider.get_rect().colliderect(p.Rect(0, 0, 960, 1144)) or \
                 not self.player2.collider.get_rect().colliderect(p.Rect(0, 0, 960, 1144)):
