@@ -11,7 +11,7 @@ class EndScreen(Scene):
     def __init__(self):
         super().__init__("END SCREEN")
 
-        self.menu_button = Button(p.Rect(384, 300, 192, 64), "assets/ui/button_1_idle.png",
+        self.menu_button = Button(p.Rect(384, 239, 192, 64), "assets/ui/button_1_idle.png",
                                   "assets/ui/button_1_active.png")
 
     def awake(self):
@@ -27,7 +27,11 @@ class EndScreen(Scene):
 
         self.menu_button.draw(surf)
 
-        surf.blit(Assets.get_image("assets/ui/quit.png", alpha=True), (384, 300))
+        surf.blit(Assets.get_image("assets/ui/title.png", alpha=True), (352, 50))
+
+        surf.blit(Assets.get_image("assets/ui/thankyou.png", alpha=True), (224, 350))
+
+        surf.blit(Assets.get_image("assets/ui/menu.png", alpha=True), (384, 239))
 
         return surf
 

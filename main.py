@@ -8,7 +8,7 @@ async def main():
     game = Game()
     game.start()
 
-    while True:
+    while not game.should_close:
         game.poll_events()
         game.start_frame()
         game.early_update()
@@ -19,7 +19,7 @@ async def main():
 
         await asyncio.sleep(0)
 
-        if game.should_close:
-            game.quit()
+    game.quit()
+
 
 asyncio.run(main())

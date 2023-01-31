@@ -17,10 +17,10 @@ class MainMenu(Scene):
 
         self.shadow = None
 
-        self.play_button = Button(p.Rect(384, 180, 192, 64), "assets/ui/button_1_idle.png",
+        self.play_button = Button(p.Rect(384, 230, 192, 64), "assets/ui/button_1_idle.png",
                                   "assets/ui/button_1_active.png")
 
-        self.quit_button = Button(p.Rect(384, 300, 192, 64), "assets/ui/button_1_idle.png",
+        self.quit_button = Button(p.Rect(384, 350, 192, 64), "assets/ui/button_1_idle.png",
                                   "assets/ui/button_1_active.png")
 
     def awake(self):
@@ -41,13 +41,15 @@ class MainMenu(Scene):
         surf = p.Surface((Settings.get("RESOLUTION")))
         surf.blit(Assets.get_image("assets/backgrounds/default.png"), (0, 0))
 
-        surf.blit(self.shadow, (364, 160))
+        surf.blit(Assets.get_image("assets/ui/title.png", alpha=True), (352, 50))
+
+        surf.blit(self.shadow, (364, 210))
 
         self.play_button.draw(surf)
         self.quit_button.draw(surf)
 
-        surf.blit(Assets.get_image("assets/ui/play.png", alpha=True), (384, 180))
-        surf.blit(Assets.get_image("assets/ui/quit.png", alpha=True), (384, 300))
+        surf.blit(Assets.get_image("assets/ui/play.png", alpha=True), (384, 230))
+        surf.blit(Assets.get_image("assets/ui/quit.png", alpha=True), (384, 350))
 
         return surf
 
