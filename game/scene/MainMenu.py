@@ -56,4 +56,4 @@ class MainMenu(Scene):
     def enter(self):
         if not Audio.current_track == "assets/sounds/level.wav":
             pass
-            # Audio.play_track("assets/sounds/level.wav")
+            Audio.play_track("assets/sounds/level.wav")
